@@ -8,6 +8,11 @@
 namespace asciig {
 	class PixelDriver {
 	public:
+		/*
+			Creates a new Pixel Driver  with given width and height
+			NOTE: this class depends on a constant number of lines on the console before it
+			they can be stacked so long as they are not resized
+		*/
 		PixelDriver(int width, int height)
 			: width(width), height(height), output(height, ColorString(width, ' ')),
 			console(GetStdHandle(STD_OUTPUT_HANDLE))
@@ -21,7 +26,7 @@ namespace asciig {
 
 			this->root_y = SBinfo.dwCursorPosition.Y;
 
-			for (int i = 0; i < this->output.size(); i++) {
+			for (unsigned int i = 0; i < this->output.size(); i++) {
 				std::cout << this->output.at(i) << std::endl;
 			}
 
@@ -51,11 +56,44 @@ namespace asciig {
 
 			gotoXY(0, y);
 			
-			for (int i = y; i < this->output.size(); i++) {
+			for (unsigned int i = y; i < this->output.size(); i++) {
 				std::cout << this->output.at(i) << std::endl;
 			}
 
 			return *this;
+		}
+		/*
+			Grows or shrinks the 'window' to the new height and width, data may be lost, and new spaces will be filled with black black space
+		*/
+		void resize(int width, int height) {
+			this->clearWindow();
+			//restructure the data
+			this->output.resize(height, ColorString(width, ' '));
+				for (unsigned int i = 0; i < this->output.size(); i++) {
+				this->output.at(i).resize(width, ColorChar(' '));
+			}
+
+			this->width = width;
+			this->height = height;
+
+			this->printFullWindow();
+		}
+
+		/*
+			Clears and reprints the entire window content
+		*/
+		void printFullWindow() {
+			this->putsXY(0, 0, "");
+		}
+
+		void clearWindow() {
+			this->gotoXY(0, 0);
+			for (unsigned int i = 0; i < this->output.size(); i++) {
+				for (unsigned int j = 0; j < this->output.at(i).size(); j++) {
+					std::cout << " ";
+				}
+				std::cout << "\n";
+			}
 		}
 	private:
 		void gotoXY(int x, int y) {

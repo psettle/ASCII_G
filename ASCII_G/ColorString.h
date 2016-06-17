@@ -42,11 +42,11 @@ namespace asciig {
 		friend std::ostream& operator<<(std::ostream& os, ColorString& s) {
 
 			//foreach char
-			for (int i = 0; i < s.size(); i++) {
+			for (unsigned int i = 0; i < s.size(); i++) {
 
 				//build color for each char
 				std::string query;
-				for (int j = 0; j < s.at(i).mods.size(); j++) {
+				for (unsigned int j = 0; j < s.at(i).mods.size(); j++) {
 					query += std::to_string(s.at(i).mods.at(j));
 
 					if (j != s.at(i).mods.size() - 1) {
@@ -96,7 +96,7 @@ namespace asciig {
 				mods.push_back(va_arg(args, ColorCode));
 			}
 
-			for (int i = 0; i < source.length(); i++) {
+			for (unsigned int i = 0; i < source.length(); i++) {
 				this->push_back(ColorChar(source.at(i), mods));
 			}
 		}
@@ -107,7 +107,7 @@ namespace asciig {
 
 		ColorString& replace(const int pos, const int length, const ColorString& other) {
 			int other_index = 0;
-			for (int i = pos; i < length + pos && i < this->size(); i++) {
+			for (unsigned int i = pos; i < length + pos && i < this->size(); i++) {
 				this->at(i) = other.at(other_index);
 				other_index++;
 			}
