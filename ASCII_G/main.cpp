@@ -7,5 +7,6 @@ int main() {
 	p.putsXY(5, 5, asciig::ColorString("hello", 1, asciig::Color::GREEN));
 	q.putsXY(5, 5, asciig::ColorString("hello", 1, asciig::Color::GREEN));
 
+
 	q.resize(1, 1);
 }
