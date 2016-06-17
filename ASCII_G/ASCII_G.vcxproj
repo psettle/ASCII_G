@@ -142,12 +142,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\Desktop\main.cpp" />
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="ColorString.h" />
+    <ClInclude Include="PixelDriver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\Desktop\PixelDriver.h" />
-    <ClInclude Include="..\..\..\..\..\Desktop\Color.h" />
-    <ClInclude Include="..\..\..\..\..\Desktop\ColorString.h" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
