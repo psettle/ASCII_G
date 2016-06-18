@@ -1,9 +1,9 @@
-#ifndef ASCII_COLOR_H
-#define ASCII_COLOR_H
+#ifndef ASCIIG_COLOR_H
+#define ASCIIG_COLOR_H
 
 namespace asciig {
 
-	typedef int ColorCode;
+	typedef size_t ColorCode;
 
 	class Color {
 	public:
