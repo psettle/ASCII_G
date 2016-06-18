@@ -1,156 +1,97 @@
-//TODO: implement string class that keeps colors indexed, should 
-#ifndef ASCII_COLORSTRING_H
-#define ASCII_COLORSTRING_H
+#ifndef ASCIIG_COLORSTRING_H
+#define ASCIIG_COLORSTRING_H
 
 
 #include<string>
 #include"Color.h"
 #include<vector>
 #include<stdarg.h>
+#include"ColorChar.h"
 
 
 namespace asciig {
-	struct ColorChar {
-		ColorChar(char c, int count = 0, ...) {
-			this->c = c;
-			va_list arguments;
-			va_start(arguments, count);
-		
-			//add arguments to to the list
-			for (int i = 0; i < count; i++) {
-				this->mods.push_back(va_arg(arguments, ColorCode));
-			}
-
-			va_end(arguments);
-		}
-
-		ColorChar(char c, std::vector<ColorCode> mods) {
-			this->c = c;
-			this->mods = mods;
-		}
-
-		ColorChar() {
-
-		}
-		char c;
-		std::vector<ColorCode> mods;
-
-		bool operator==(ColorChar& other) {
-			if (this->c != other.c) {
-				return false;
-			} 
-			if (this->mods != other.mods) {
-				return false;
-			}
-
-			return true;
-		}
-	};
-
+	/*
+		Similar to the string class, except each character has an 
+		associated color setting
+	*/
 	class ColorString : public std::vector<ColorChar> {
 	public:
-		//output overload
-		friend std::ostream& operator<<(std::ostream& os, ColorString& s) {
 
-			//foreach char
-			for (unsigned int i = 0; i < s.size(); i++) {
+		/*
+			Builds an empty ColorString
+		*/
+		ColorString() {}	
 
-				//build color for each char
-				std::string query;
-				for (unsigned int j = 0; j < s.at(i).mods.size(); j++) {
-					query += std::to_string(s.at(i).mods.at(j));
+		/*
+			Creates a ColorString filled with size characters of the default specified
+			with the given colors
+		*/
+		ColorString(const size_t size, const char default, const size_t count = 0, ...);
 
-					if (j != s.at(i).mods.size() - 1) {
-						query += ";";
-					}
-				}
+		/*
+			Creates a colorstring with other as contents, and count modifiers from asciig::Color
+		*/
+		ColorString(const char* other, const size_t count = 0, ...);
 
-				query = (std::string)"\x1b[" + query + (std::string)"m";
-				//output the char
-				os << query << s.at(i).c << "\x1b[0m";
+		/*
+			Creates a colorstring with other as contents, and count modifiers from asciig::Color
+		*/
+		ColorString(const std::string& other, const size_t count = 0, ...);
 
-			}
 
-			return os;
-		}
+		/*
+			Replaces this strings contents with other, starting at pos for length characters
+		*/
+		ColorString& replace(const size_t pos, const size_t length, const ColorString& other);
 
-		ColorString(const int size, const char default) 
-			: vector<ColorChar>()
-		{
-			for (int i = 0; i < size; i++) {
-				this->push_back(ColorChar(default));
-			}
-		}
+		/*
+			Returns the number of characters in this string
+		*/
+		size_t length() const { return this->size(); }
 
-		ColorString(const char* other, int count = 0, ...) {
-			va_list args;
-			va_start(args, count);
+		/*
+			Returns a substring of this from start with length
+		*/
+		ColorString substr(const size_t start, const size_t length) const;
 
-			this->buildColored(other, count, args);
+		/*
+			Returns a new string from position start to the end of the string
+		*/
+		ColorString substr(const size_t start) const;
 
-			va_end(args);
-		}
+		/*
+			Adds rhs onto the end of this
+		*/
+		ColorString& operator+=(const ColorString& rhs);
 
-		ColorString(std::string other, int count = 0, ...) {
-			va_list args;
-			va_start(args, count);
-			
-			this->buildColored(other, count, args);
+		/*
+			Returns true if this and other have all the same ColorCharacters, false otherwise
+		*/
+		bool operator==(const ColorString& other) const;
 
-			va_end(args);
-		}
+		/*
+			Returns true if this and other have any different ColorCharaters, or are of different length,
+			false otherwise
+		*/
+		bool operator !=(const ColorString& other) const;
 
-		void buildColored(std::string source, int count, va_list args) {
-			std::vector<ColorCode> mods;
-			//add arguments to the query
-			for (int i = 0; i < count; i++) {
-				mods.push_back(va_arg(args, ColorCode));
-			}
+		/*
+			Outputs operator for the while string
+		*/
+		friend std::ostream& operator<<(std::ostream& os, const ColorString& s);	
+	private:
 
-			for (unsigned int i = 0; i < source.length(); i++) {
-				this->push_back(ColorChar(source.at(i), mods));
-			}
-		}
+		/*
+			pushes all of source onto this string with count modifiers from args
+		*/
+		void buildColored(const std::string& source, const size_t count, va_list args);
 
-		ColorString() {
-
-		}
-
-		ColorString& replace(const int pos, const int length, const ColorString& other) {
-			int other_index = 0;
-			for (unsigned int i = pos; i < length + pos && i < this->size(); i++) {
-				this->at(i) = other.at(other_index);
-				other_index++;
-			}
-			return *this;
-		}
-
-		int length() {
-			return this->size();
-		}
-
-		bool operator==(ColorString& other) {
-		
-			if (this->length() != other.length()) {
-				return false;
-			} 
-				
-			for (int i = 0; i < this->length(); i++) {
-				if (!(this->at(i) == other.at(i))) {
-					return false;
-				}
-			}
-			
-			return true;
-		}
-
-		bool operator !=(ColorString& other) {
-			return !(*this == other);
-		}
-
-	private:		
 	};
 
+	/*
+		Concatenates two ColorStrings
+	*/
+	ColorString operator+(const ColorString& lhs, const ColorString& rhs);
 }
 
 #endif
