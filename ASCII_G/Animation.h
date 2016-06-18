@@ -3,6 +3,7 @@
 #include<vector>
 #include"Frame.h"
 #include"Image.h"
+#include"ChangeMap.h"
 #include"PixelDriver.h"
 #include<memory>
 #include<thread>
@@ -29,6 +30,11 @@ namespace asciig {
 			Adds an Image to the last frame of the animation
 		*/
 		void addImage(const Image& frame);
+
+		/*
+			Adds a changemap to the end of the animation
+		*/
+		void addChangeMap(const ChangeMap& frame);
 
 	private:
 		/*

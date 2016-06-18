@@ -14,7 +14,7 @@ namespace asciig {
 		/*
 			Creates an empty image
 		*/
-		Image() {};
+		Image() {}
 
 		/*
 			Copies an image
@@ -42,8 +42,10 @@ namespace asciig {
 		*/
 		void runFrame(PixelDriver& window) const;
 
+		/*
+			Calls parent destructors
+		*/
 		~Image() {}
-
 	};
 
 }

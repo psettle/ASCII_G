@@ -12,6 +12,7 @@ namespace asciig {
 	*/
 	class ColorChar {
 	public:
+
 		/*
 			Default ctor, creates a garbage char with no mods
 		*/

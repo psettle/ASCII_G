@@ -143,6 +143,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Change.h" />
+    <ClInclude Include="ChangeMap.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="ColorChar.h" />
     <ClInclude Include="ColorString.h" />
@@ -152,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="ChangeMap.cpp" />
     <ClCompile Include="ColorChar.cpp" />
     <ClCompile Include="ColorString.cpp" />
     <ClCompile Include="Image.cpp" />

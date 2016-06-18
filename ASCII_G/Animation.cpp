@@ -17,4 +17,8 @@ namespace asciig {
 	void Animation::addImage(const Image& frame) {
 		this->push_back(std::unique_ptr<Frame>(new Image(frame)));
 	}
+
+	void Animation::addChangeMap(const ChangeMap& frame) {
+		this->push_back(std::unique_ptr<Frame>(new ChangeMap(frame)));
+	}
 }
