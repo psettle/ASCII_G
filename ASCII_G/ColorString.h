@@ -3,7 +3,6 @@
 
 
 #include<string>
-#include"Color.h"
 #include<vector>
 #include<stdarg.h>
 #include"ColorChar.h"

@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="ColorChar.h" />
     <ClInclude Include="ColorString.h" />
@@ -150,6 +151,7 @@
     <ClInclude Include="PixelDriver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="ColorChar.cpp" />
     <ClCompile Include="ColorString.cpp" />
     <ClCompile Include="Image.cpp" />

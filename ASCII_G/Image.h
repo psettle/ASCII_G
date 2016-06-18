@@ -41,6 +41,9 @@ namespace asciig {
 			any part of the image that is too big will be cut off
 		*/
 		void runFrame(PixelDriver& window) const;
+
+		~Image() {}
+
 	};
 
 }
