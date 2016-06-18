@@ -151,6 +151,7 @@
     <ClInclude Include="PixelDriver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="ColorChar.cpp" />
     <ClCompile Include="ColorString.cpp" />
     <ClCompile Include="Image.cpp" />

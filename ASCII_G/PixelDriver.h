@@ -1,5 +1,5 @@
-#ifndef PIXELDRIVER_H
-#define PIXELDRIVER_H
+#ifndef ASCIIG_PIXELDRIVER_H
+#define ASCIIG_PIXELDRIVER_H
 #include<vector>
 #include<Windows.h>
 #include"ColorString.h"

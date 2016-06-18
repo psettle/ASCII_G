@@ -6,35 +6,34 @@
 #include"PixelDriver.h"
 #include<memory>
 #include<thread>
+#include<fstream>
 
-
+//TDOD add change mask frame type
 namespace asciig {
-	class Animation : public std::vector<std::unique_ptr<Frame>> {
+	/*
+		Container class for Frame objects, also easy execution for a sequence of frames
+	*/
+	class Animation : private std::vector<std::unique_ptr<Frame>> {
 	public:
-		Animation(const size_t width, const size_t height)
-			: window(width, height)
-		{
-			this->window = window;
-		}
-
-		void runAnimation(const size_t speed) {
-			for (size_t frame = 0; frame < this->size(); frame++) {
-				this->at(frame)->runFrame(this->window);
-				std::this_thread::sleep_for(std::chrono::milliseconds(speed));
-			}
-		}
-
-		void addImage(const Image& frame) {
-			this->push_back(std::unique_ptr<Frame>(new Image(frame)));
-		}
-
-		void addImage(const Image* frame) {
-			this->push_back(std::unique_ptr<Frame>(new Image(*frame)));
-		}
-
-
+		/*
+			Creates a new animation with the given width and height
+		*/
+		Animation(const size_t width, const size_t height);
 	
+		/*
+			Runs the animation with speed # of milliseconds between each frame
+		*/
+		void runAnimation(const size_t speed);
+
+		/*
+			Adds an Image to the last frame of the animation
+		*/
+		void addImage(const Image& frame);
+
 	private:
+		/*
+			Connection to the console, manages updating the console output
+		*/
 		PixelDriver window;
 	};
 }

@@ -21,9 +21,6 @@ int main() {
 		animation.addImage(Image("========> "));
 		animation.addImage(Image("=========>"));
 
-
-		animation.runAnimation(300);
-		animation.runAnimation(300);
-	
-
+		while(1)
+		animation.runAnimation(100);
 }
