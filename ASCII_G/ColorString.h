@@ -34,6 +34,17 @@ namespace asciig {
 		}
 		char c;
 		std::vector<ColorCode> mods;
+
+		bool operator==(ColorChar& other) {
+			if (this->c != other.c) {
+				return false;
+			} 
+			if (this->mods != other.mods) {
+				return false;
+			}
+
+			return true;
+		}
 	};
 
 	class ColorString : public std::vector<ColorChar> {
@@ -116,6 +127,25 @@ namespace asciig {
 
 		int length() {
 			return this->size();
+		}
+
+		bool operator==(ColorString& other) {
+		
+			if (this->length() != other.length()) {
+				return false;
+			} 
+				
+			for (int i = 0; i < this->length(); i++) {
+				if (!(this->at(i) == other.at(i))) {
+					return false;
+				}
+			}
+			
+			return true;
+		}
+
+		bool operator !=(ColorString& other) {
+			return !(*this == other);
 		}
 
 	private:		
