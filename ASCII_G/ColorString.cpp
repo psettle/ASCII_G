@@ -52,6 +52,26 @@ namespace asciig {
 		return *this;
 	}
 
+	ColorString ColorString::substr(const size_t start, const size_t length) const {
+		ColorString toReturn;
+		for (size_t pos = start; pos < start + length && pos < this->length(); pos++) {
+			toReturn.push_back(this->at(pos));
+		}
+		return toReturn;
+	}
+
+	ColorString ColorString::substr(const size_t start) const {
+		ColorString toReturn;
+		for (size_t pos = start; pos < this->length(); pos++) {
+			toReturn.push_back(this->at(pos));
+		}
+		return toReturn;
+	}
+
+	ColorString& ColorString::operator+=(const ColorString& other) {
+		return *this = *this + other;
+ 	}
+
 	bool ColorString::operator==(const ColorString& other) const {
 
 		if (this->length() != other.length()) {
@@ -91,5 +111,15 @@ namespace asciig {
 		for (size_t index = 0; index < source.length(); index++) {
 			this->push_back(ColorChar(source.at(index), mods));
 		}
+	}
+
+	ColorString operator+(const ColorString& lhs, const ColorString& rhs) {
+		ColorString toReturn = lhs;
+
+		for (size_t pos = 0; pos < rhs.length(); pos++) {
+			toReturn.push_back(rhs.at(pos));
+		}
+
+		return toReturn;
 	}
 }

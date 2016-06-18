@@ -6,14 +6,14 @@
 namespace asciig {
 
 	/*
-		abstract representing a frame in an animation
+		abstract class representing a frame in an animation
 	*/
 	class Frame {
 	public:
 		/*
 			Applies this frame to the window
 		*/
-		virtual void runFrame(PixelDriver& window) = 0;
+		virtual void runFrame(PixelDriver& window) const = 0;
 	};
 
 }

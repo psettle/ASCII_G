@@ -9,19 +9,18 @@ int main() {
 	
 	asciig::Frame* video[5];
 
-	std::vector<asciig::ColorString> image;
-	image.push_back(asciig::ColorString(">   ", 1, asciig::Color::GREEN_BG));
-	image.push_back(asciig::ColorString(">   ", 1, asciig::Color::GREEN_BG));
-	image.push_back(asciig::ColorString(">   ", 1, asciig::Color::GREEN_BG));
-	image.push_back(asciig::ColorString(">   ", 1, asciig::Color::GREEN_BG));
+	asciig::Image image;
+
+	image.addLine(asciig::ColorString(">   ", 1, asciig::Color::GREEN_BG));
+	image.addLine(asciig::ColorString(">   ", 1, asciig::Color::GREEN_BG));
+	image.addLine(asciig::ColorString(">   ", 1, asciig::Color::GREEN_BG));
+	image.addLine(asciig::ColorString(">   ", 1, asciig::Color::GREEN_BG));
 	
 	video[0] = new asciig::Image(image);
 
 	image.at(0) = asciig::ColorString(" >  ");
 
-	video[1] = new asciig::Image(image);
-
-	image.at(1) = asciig::ColorString(" >  ");
+	video[1] = new asciig::Image(asciig::ColorString("abcd\nefgh\nhijk\nlmno", 2, asciig::Color::MAGENTA_BG, asciig::Color::WHITE));
 
 	video[2] = new asciig::Image(image);
 
@@ -37,5 +36,4 @@ int main() {
 		video[i]->runFrame(p);
 		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	}
-	
 }

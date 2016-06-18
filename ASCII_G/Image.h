@@ -9,35 +9,38 @@ namespace asciig {
 		Fully redefines the pixels for a window, will fail if the image size doesn't match
 		the window size
 	*/
-	class Image : public Frame {
+	class Image : public Frame, public std::vector<ColorString> {
 	public:
-		Image(std::vector<ColorString> source) {
-			this->image = source;
-		}
 		/*
-			Applies this frame to the window
+			Creates an empty image
 		*/
-		void runFrame(PixelDriver& window) {
-			//check image size
-			if (this->image.size() != window.getHeight()) {
-				exit(1);
-			}
+		Image() {};
 
-			for (size_t line = 0; line < this->image.size(); line++) {
-				if (this->image.at(line).length() != window.getWidth()) {
-					exit(1);
-				}
-			}
-			//run the frame
-			for (size_t line = 0; line < this->image.size(); line++) {
-				window.putsXY(0, line, this->image.at(line));
-			}
-		}
-	private:
 		/*
-			Container for the image data
+			Copies an image
 		*/
-		std::vector<ColorString> image;
+		Image(const Image& other);
+
+		/*
+			Creates an image from a source character map
+		*/
+		Image(const std::vector<ColorString>& source);
+
+		/*
+			Creates an image from a single string, lines are parsed at \n
+		*/
+		Image(const ColorString& source);
+
+		/*
+			Adds a line to the image
+		*/
+		void addLine(const ColorString& line) { this->push_back(line); }
+
+		/*
+			Applies this frame to the window, if image is too small old buffer will stay
+			any part of the image that is too big will be cut off
+		*/
+		void runFrame(PixelDriver& window) const;
 	};
 
 }

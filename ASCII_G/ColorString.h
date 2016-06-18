@@ -50,6 +50,21 @@ namespace asciig {
 		size_t length() const { return this->size(); }
 
 		/*
+			Returns a substring of this from start with length
+		*/
+		ColorString substr(const size_t start, const size_t length) const;
+
+		/*
+			Returns a new string from position start to the end of the string
+		*/
+		ColorString substr(const size_t start) const;
+
+		/*
+			Adds rhs onto the end of this
+		*/
+		ColorString& operator+=(const ColorString& rhs);
+
+		/*
 			Returns true if this and other have all the same ColorCharacters, false otherwise
 		*/
 		bool operator==(const ColorString& other) const;
@@ -73,6 +88,10 @@ namespace asciig {
 
 	};
 
+	/*
+		Concatenates two ColorStrings
+	*/
+	ColorString operator+(const ColorString& lhs, const ColorString& rhs);
 }
 
 #endif

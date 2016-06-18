@@ -38,6 +38,16 @@ namespace asciig {
 		ColorChar& operator=(const ColorChar&);
 
 		/*
+			Compares for same character (ignores colors)
+		*/
+		bool operator==(const char other) const { return this->character == other; }
+
+		/*
+			Compares for different character (ignores colors)
+		*/
+		bool operator!=(const char other) const { return this->character != other; }
+
+		/*
 			Compares for same character and colors
 		*/
 		bool operator==(const ColorChar& other) const;
