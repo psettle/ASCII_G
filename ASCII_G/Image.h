@@ -6,8 +6,7 @@
 namespace asciig {
 
 	/*
-		Fully redefines the pixels for a window, will fail if the image size doesn't match
-		the window size
+		Fully redefines the pixels for a window
 	*/
 	class Image : public Frame, public std::vector<ColorString> {
 	public:
@@ -39,8 +38,9 @@ namespace asciig {
 		/*
 			Applies this frame to the window, if image is too small old buffer will stay
 			any part of the image that is too big will be cut off
+			if print is true, the window will be graphically updated
 		*/
-		void runFrame(PixelDriver& window) const;
+		void runFrame(PixelDriver& window, const bool print = true) const;
 
 		/*
 			Calls parent destructors

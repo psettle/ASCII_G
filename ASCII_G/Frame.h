@@ -13,7 +13,7 @@ namespace asciig {
 		/*
 			Applies this frame to the window
 		*/
-		virtual void runFrame(PixelDriver& window) const = 0;
+		virtual void runFrame(PixelDriver& window, const bool print = true) const = 0;
 
 		/*
 			Destructor defined to prevent memory leaks in child classes

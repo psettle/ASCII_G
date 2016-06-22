@@ -41,10 +41,6 @@ namespace asciig {
 
 		gotoXY(0, y);
 
-		for (size_t line = y; line < this->output.size(); line++) {
-			std::cout << this->output.at(line) << std::endl;
-		}
-
 		return *this;
 	}
 

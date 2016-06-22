@@ -27,10 +27,14 @@ namespace asciig {
 		}	
 	}
 
-	void Image::runFrame(PixelDriver& window) const {
+	void Image::runFrame(PixelDriver& window, const bool print) const {
 		//run the frame
 		for (size_t line = 0; line < this->size(); line++) {
 			window.putsXY(0, line, this->at(line));
 		}
+		if (print) {
+			window.printFullWindow();
+		}
+		
 	}
 }

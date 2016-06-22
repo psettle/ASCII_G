@@ -26,6 +26,14 @@ namespace asciig {
 			window.putsXY(this->x, this->y, this->replacement);
 		}
 
+		/*
+			Moves this change by x and y
+		*/
+		void move(const size_t x, const size_t y) {
+			this->x += x;
+			this->y += y;
+		}
+
 	private:
 
 		/*

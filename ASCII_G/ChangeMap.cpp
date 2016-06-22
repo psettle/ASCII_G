@@ -19,9 +19,18 @@ namespace asciig {
 		}
 	}
 
-	void ChangeMap::runFrame(PixelDriver& window) const {
+	void ChangeMap::runFrame(PixelDriver& window, const bool print) const {
 		for (size_t change = 0; change < this->size(); change++) {
 			this->at(change).applyChange(window);
+		}
+		if (print) {
+			window.printFullWindow();
+		}
+	}
+
+	void ChangeMap::reAlign(const size_t x, const size_t y) {
+		for (size_t change = 0; change < this->size(); change++) {
+			this->at(change).move(x, y);
 		}
 	}
 }

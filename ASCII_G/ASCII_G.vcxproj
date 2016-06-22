@@ -88,6 +88,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,8 +150,10 @@
     <ClInclude Include="ColorChar.h" />
     <ClInclude Include="ColorString.h" />
     <ClInclude Include="Frame.h" />
+    <ClInclude Include="GraphicObject.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="PixelDriver.h" />
+    <ClInclude Include="Routine.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />

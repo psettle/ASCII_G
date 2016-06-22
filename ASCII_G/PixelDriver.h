@@ -21,6 +21,7 @@ namespace asciig {
 
 		/*
 			Puts as much of s into the frame as possible at the specified x, y
+			(call printFullWindow() after updates are added)
 		*/
 		PixelDriver& putsXY(const size_t x, const size_t y, const ColorString& s); 
 
