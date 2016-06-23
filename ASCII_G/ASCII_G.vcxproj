@@ -160,6 +160,7 @@
     <ClCompile Include="ChangeMap.cpp" />
     <ClCompile Include="ColorChar.cpp" />
     <ClCompile Include="ColorString.cpp" />
+    <ClCompile Include="GraphicObject.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PixelDriver.cpp" />

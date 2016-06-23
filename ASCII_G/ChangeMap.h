@@ -33,6 +33,12 @@ namespace asciig {
 		ChangeMap(const Image& image, const size_t x = 0, const size_t y = 0);
 
 		/*
+			Creates a list of changes from a source string, use '\b' as a clear character
+			and '\n' to move to the next line
+		*/
+		ChangeMap(const ColorString& source, const size_t x = 0, const size_t y = 0);
+
+		/*
 			Adds a new change to the map
 		*/
 		void addChange(const Change& change) { this->push_back(change); }

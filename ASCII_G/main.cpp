@@ -11,41 +11,60 @@ using namespace asciig;
 
 int main() {
 	
-		GraphicObject a;
+		GraphicObject go(0, 0);
 
-		PixelDriver b(7, 7);
+		PixelDriver pd(5, 5);
 
-		ChangeMap d;
-		d.addChange(Change("Hello", 0, 0));
+		ChangeMap f1(ColorString(" \b\b \n\b\b\b\b\n\b\b\b\b\n \b\b ", 1, Color::GREEN_BG));
 
-		d.addChange(Change("Hello", 5, 5));
+		ChangeMap f2(ColorString("\b \b\b\n\b\b\b \n \b\b\b\n\b\b \b", 1, Color::GREEN_BG));
 
-		a.addFrame(0, d);
+		ChangeMap f3(ColorString("\b\b \b\n \b\b\b\n\b\b\b \n\b \b\b", 1, Color::GREEN_BG));
 
-		a.addFrame(1, d);
+		go.addFrame(0, f1);
 
-		a.addFrame(2, d);
+		go.addFrame(1, f2);
 
-		a.addFrame(3, d);
+		go.addFrame(2, f3);
 
-		Routine c;
+		Routine r;
 
-		c.push_back(0);
+		r.push_back(0);
 
-		c.push_back(1);
+		r.push_back(1);
 
-		c.push_back(2);
+		r.push_back(2);
 
-		c.push_back(3);
-		auto start = std::chrono::high_resolution_clock::now();
-		a.addRoutine(0, c, true);
+		Image black = Image("     \n     \n     \n     \n     \n");
+
+		go.addRoutine(0, r, true);
+
 		for (int i = 0; i < 1000; i++) {
-			a.printSelf(b, false);
-			a.printSelf(b, false);
-			a.printSelf(b, false);
-			a.printSelf(b, false);
-			b.printFullWindow();
+
+			black.runFrame(pd, false);
+			go.printSelf(pd, false);
+			pd.printFullWindow();
+			std::this_thread::sleep_for(std::chrono::milliseconds(80));
+			go.setPosition(1, 0);
+
+			black.runFrame(pd, false);
+			go.printSelf(pd, false);
+			pd.printFullWindow();
+			std::this_thread::sleep_for(std::chrono::milliseconds(80));
+			go.setPosition(1, 1);
+
+			black.runFrame(pd, false);
+			go.printSelf(pd, false);
+			pd.printFullWindow();
+			std::this_thread::sleep_for(std::chrono::milliseconds(80));
+			go.setPosition(0, 1);
+
+			black.runFrame(pd, false);
+			go.printSelf(pd, false);
+			pd.printFullWindow();
+			std::this_thread::sleep_for(std::chrono::milliseconds(80));
+			go.setPosition(0, 0);
 		}
-		std::cout << std::chrono::duration_cast<std::chrono::milliseconds>((std::chrono::high_resolution_clock::now() - start)).count() / 4000.0 << std::endl;
+		
 		
 }

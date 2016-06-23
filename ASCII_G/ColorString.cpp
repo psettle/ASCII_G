@@ -68,9 +68,39 @@ namespace asciig {
 		return toReturn;
 	}
 
+	std::vector<ColorString> ColorString::explode(const char delimiter) const{
+		std::vector<ColorString> lines;
+
+		size_t start_index = 0;
+		size_t pos = 0;
+		for (; pos < this->size(); pos++) {
+			if (this->at(pos) == delimiter) {
+				lines.push_back(this->substr(start_index, pos - start_index));
+				start_index = pos + 1;
+			}
+		}
+
+		if (this->at(pos - 1) != delimiter) {
+			lines.push_back(this->substr(start_index, pos - start_index));
+			start_index = pos;
+		}
+
+
+		return lines;
+	}
+
 	ColorString& ColorString::operator+=(const ColorString& other) {
 		return *this = *this + other;
  	}
+
+	ColorString::operator std::string() {
+		std::string toReturn = "";
+		for (size_t pos = 0; pos < this->length(); pos++) {
+			toReturn += this->at(pos);
+		}
+		//splice out redundant escape codes?
+		return toReturn;
+	}
 
 	bool ColorString::operator==(const ColorString& other) const {
 

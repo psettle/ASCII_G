@@ -37,6 +37,8 @@ namespace asciig {
 		this->mods = mods;
 	}
 
+	
+
 	bool ColorChar::operator==(const ColorChar& other) const{
 		if (this->character != other.character) {
 			return false;
@@ -46,6 +48,21 @@ namespace asciig {
 		}
 
 		return true;
+	}
+
+	ColorChar::operator std::string() {
+		std::string query;
+		for (size_t mod = 0; mod < mods.size(); mod++) {
+			query += std::to_string(mods.at(mod));
+
+			if (mod != mods.size() - 1) {
+				query += ";";
+			}
+		}
+
+		query = __OPEN_COLOR__ + query + "m";
+		//output the char
+		return  query + character + __CLOSE_COLOR__;
 	}
 
 	bool ColorChar::operator!=(const ColorChar& other) const {

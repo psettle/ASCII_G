@@ -59,9 +59,19 @@ namespace asciig {
 		ColorString substr(const size_t start) const;
 
 		/*
+			Splits this string into parts on the delimiter
+		*/
+		std::vector<ColorString> explode(const char delimiter = '\n') const;
+
+		/*
 			Adds rhs onto the end of this
 		*/
 		ColorString& operator+=(const ColorString& rhs);
+
+		/*
+			Returns a string of this ColorString
+		*/
+		operator std::string();
 
 		/*
 			Returns true if this and other have all the same ColorCharacters, false otherwise

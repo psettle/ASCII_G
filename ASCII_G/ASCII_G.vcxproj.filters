@@ -77,5 +77,8 @@
     <ClCompile Include="PixelDriver.cpp">
       <Filter>Source Files\src</Filter>
     </ClCompile>
+    <ClCompile Include="GraphicObject.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

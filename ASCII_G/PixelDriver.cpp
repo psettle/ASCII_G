@@ -66,6 +66,7 @@ namespace asciig {
 	}
 
 	void PixelDriver::clearWindow() {
+		
 		this->gotoXY(0, 0);
 		for (unsigned int i = 0; i < this->output.size(); i++) {
 			for (unsigned int j = 0; j < this->output.at(i).size(); j++) {

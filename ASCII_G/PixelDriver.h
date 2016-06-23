@@ -21,7 +21,7 @@ namespace asciig {
 
 		/*
 			Puts as much of s into the frame as possible at the specified x, y
-			(call printFullWindow() after updates are added)
+			(call printFullWindow() after update
 		*/
 		PixelDriver& putsXY(const size_t x, const size_t y, const ColorString& s); 
 
@@ -58,6 +58,7 @@ namespace asciig {
 
 		/*
 			The current content of this window, several rows of strings
+			(cant use Image because image is dependent on this)
 		*/
 		std::vector<ColorString> output;
 		

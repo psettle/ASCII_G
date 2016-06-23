@@ -39,6 +39,11 @@ namespace asciig {
 		ColorChar& operator=(const ColorChar&);
 
 		/*
+			Creates a string of this char
+		*/
+		operator std::string(); 
+
+		/*
 			Compares for same character (ignores colors)
 		*/
 		bool operator==(const char other) const { return this->character == other; }
