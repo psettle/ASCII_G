@@ -6,11 +6,14 @@
 #include<thread>
 #include"Animation.h"
 #include"GraphicObject.h"
+#include"GraphicObjectManager.h"
 
 using namespace asciig;
 
 int main() {
 	
+	GraphicObjectManager g;
+
 		GraphicObject go(0, 0);
 
 		PixelDriver pd(5, 5);

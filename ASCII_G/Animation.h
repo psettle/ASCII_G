@@ -7,7 +7,6 @@
 #include"PixelDriver.h"
 #include<memory>
 #include<thread>
-#include<fstream>
 
 //TDOD add change mask frame type
 namespace asciig {

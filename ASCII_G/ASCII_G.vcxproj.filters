@@ -54,6 +54,9 @@
     <ClInclude Include="Routine.h">
       <Filter>Header Files\src</Filter>
     </ClInclude>
+    <ClInclude Include="GraphicObjectManager.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">

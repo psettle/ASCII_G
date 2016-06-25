@@ -151,6 +151,7 @@
     <ClInclude Include="ColorString.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="GraphicObject.h" />
+    <ClInclude Include="GraphicObjectManager.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="PixelDriver.h" />
     <ClInclude Include="Routine.h" />
